@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import RequireLogin from "./auth/requireLogin";
 
-function App() {
+import Header from "./components/header";
+import Footer from "./components/footer";
+import Login from "./components/login";
+import Tweets from "./components/tweets";
+
+import "./App.css";
+
+const App = () => {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  console.log("isloggedIn", isLoggedIn);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <Header />
+      <div className="d-flex justify-content-center m-5 pb-5">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/tweets"
+            element={
+              <RequireLogin isLoggedIn={isLoggedIn}>
+                <Tweets />
+              </RequireLogin>
+            }
+          />
+          <Route path="/" element={<Navigate replace to="/login" />} />
+        </Routes>
+      </div>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
