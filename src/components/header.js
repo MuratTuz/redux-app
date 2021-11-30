@@ -4,20 +4,22 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
+import Avatar from "@mui/material/Avatar";
 
 import { TweetFormContainer } from "../containers/TweetFormContainer";
 
-/* 
-const logoImg = process.env.PUBLIC_URL + "/navlogo-removebg-preview.png"; */
+const logoImg = process.env.PUBLIC_URL + "/tweetLogo.png";
 
 const Header = (state) => {
-  console.log("username ", state);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar className="d-flex justify-content-between">
           <Typography variant="h6" component="div">
-            Tweeter Application
+            <div className="d-flex justify-content-between">
+              <Avatar alt="Remy Sharp" src={logoImg} />
+              <span>{"  "}Twitter Application</span>
+            </div>
           </Typography>
           {state.username !== "Not Signed In" ? (
             <TweetFormContainer />

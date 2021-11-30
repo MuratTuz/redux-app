@@ -11,10 +11,7 @@ export const postedTweet = (postedTweet) => ({
   payload: postedTweet,
 });
 
-export const fetchedTweets = (tweets) => {
-  //  console.log("fetchedTweets", tweets);
-  return {
-    type: FETCHED_TWEETS,
-    payload: tweets,
-  };
-};
+export const fetchedTweets = (tweets) => ({
+  type: FETCHED_TWEETS,
+  payload: tweets,
+});

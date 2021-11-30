@@ -11,33 +11,31 @@ const options = getLoginUsernames();
 
 const LoginListBox = ({ loggedIn }) => {
   const navigate = useNavigate();
-    console.log("loggedIn ", loggedIn);
 
-    const handleChange = async (username) => {
-      const {
-        accessToken: token,
-        user: { id: userId },
-      } = await getAccessToken(username);
-      console.log(" value ", token, " id ", userId);
-      loggedIn(token, userId, username);
-      saveTokenToSessionStorage(token);
-      navigate("/tweets");
-    };
+  const handleChange = async (username) => {
+    const {
+      accessToken: token,
+      user: { id: userId },
+    } = await getAccessToken(username);
+    loggedIn(token, userId, username);
+    saveTokenToSessionStorage(token);
+    navigate("/tweets");
+  };
 
-    return (
-      <Autocomplete
-        onChange={(_event, newValue) => {
-          handleChange(newValue);
-        }}
-        id="uncontrollable-list-box"
-        options={options}
-        sx={{ width: 300 }}
-        disableClearable={true}
-        renderInput={(params) => (
-          <TextField {...params} variant="outlined" label="User Emails" />
-        )}
-      />
-    );
+  return (
+    <Autocomplete
+      onChange={(_event, newValue) => {
+        handleChange(newValue);
+      }}
+      id="uncontrollable-list-box"
+      options={options}
+      sx={{ width: 300 }}
+      disableClearable={true}
+      renderInput={(params) => (
+        <TextField {...params} variant="outlined" label="User Emails" />
+      )}
+    />
+  );
 };
 
 export default LoginListBox;

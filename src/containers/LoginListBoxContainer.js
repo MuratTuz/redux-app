@@ -2,16 +2,13 @@ import { connect } from "react-redux";
 import LoginListBox from "../components/loginListBox";
 import { loggedIn } from "../redux/actions";
 
-const mapStateToProps = (state) => {
-  return {
-    state,
-  };
-};
+/* const mapStateToProps = (state) => ({ state }); */
+
 const mapDispatchToProps = {
   loggedIn,
 };
 
 export const LoginListBoxContainer = connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(LoginListBox);
