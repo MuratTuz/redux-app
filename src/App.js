@@ -1,6 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import RequireLogin from "./auth/requireLogin";
+import { RequireLoginContainer } from "./containers/RequireLoginContainer";
 
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -10,8 +9,6 @@ import Tweets from "./components/tweets";
 import "./App.css";
 
 const App = () => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
-  console.log("isloggedIn", isLoggedIn);
   return (
     <div id="app">
       <Header />
@@ -21,9 +18,9 @@ const App = () => {
           <Route
             path="/tweets"
             element={
-              <RequireLogin isLoggedIn={isLoggedIn}>
+              <RequireLoginContainer>
                 <Tweets />
-              </RequireLogin>
+              </RequireLoginContainer>
             }
           />
           <Route path="/" element={<Navigate replace to="/login" />} />
