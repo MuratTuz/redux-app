@@ -37,5 +37,5 @@ export const reducer = (state = initialState, action) => {
       tweets,
     };
   }
-    return state;
+    return { ...state };
 };
