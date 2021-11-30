@@ -18,7 +18,7 @@ const Header = (state) => {
           <Typography variant="h6" component="div">
             <div className="d-flex justify-content-between">
               <Avatar alt="Remy Sharp" src={logoImg} />
-              <span>{"  "}Twitter Application</span>
+              <span>&nbsp; Twitter Application</span>
             </div>
           </Typography>
           {state.username !== "Not Signed In" ? (
