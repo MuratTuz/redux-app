@@ -1,4 +1,3 @@
-import produce from "immer";
 import { LOGGED_IN, POSTED_TWEET, FETCHED_TWEETS } from "./actionTypes";
 
 export const initialState = {
@@ -9,21 +8,33 @@ export const initialState = {
   lastTweet: "",
 };
 
-export const reducer = produce((state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   if (action.type === LOGGED_IN) {
     const { token, userId, username } = action.payload;
-    state.token = token;
-    state.userId = userId;
-    state.username = username;
+
+    return {
+      ...state,
+      token,
+      userId,
+      username,
+    };
   }
 
   if (action.type === POSTED_TWEET) {
     const lastTweet = action.payload;
-    state.lastTweet = lastTweet;
+
+    return {
+      ...state,
+      lastTweet,
+    };
   }
 
   if (action.type === FETCHED_TWEETS) {
     const tweets = action.payload;
-    state.tweets = tweets;
+    return {
+      ...state,
+      tweets,
+    };
   }
-}, initialState);
+  return { ...state };
+};
