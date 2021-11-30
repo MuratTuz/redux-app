@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 
 import "./index.css";
-import { AppContainer } from "./containers/AppContainer";
+import App from "./App.js";
 import "bootstrap/dist/css/bootstrap.css";
 
 import reportWebVitals from "./reportWebVitals";
@@ -14,7 +14,7 @@ import { Provider } from "react-redux";
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <AppContainer />
+      <App />
     </Router>
   </Provider>,
   document.getElementById("root")
