@@ -31,7 +31,6 @@ export const reducer = (state = initialState, action) => {
 
   if (action.type === FETCHED_TWEETS) {
     const tweets = action.payload;
-    //    console.log(" reducer ..: ", tweets);
     return {
       ...state,
       tweets,
