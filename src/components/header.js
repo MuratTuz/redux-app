@@ -21,7 +21,7 @@ const Header = (state) => {
               <span>&nbsp; Twitter Application</span>
             </div>
           </Typography>
-          {state.username !== "Not Signed In" ? (
+          {state.username !== "Not Logged In" ? (
             <TweetFormContainer />
           ) : (
             <span></span>

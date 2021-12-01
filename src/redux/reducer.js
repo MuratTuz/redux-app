@@ -1,7 +1,7 @@
 import { LOGGED_IN, POSTED_TWEET, FETCHED_TWEETS } from "./actionTypes";
 
 export const initialState = {
-  username: "Not Signed In",
+  username: "Not Logged In",
   token: "",
   userId: "",
   tweets: "",

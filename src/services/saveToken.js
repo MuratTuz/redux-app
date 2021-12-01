@@ -1,5 +1,5 @@
 export const saveTokenToSessionStorage = (token) => {
-  sessionStorage.setItem("myTwitterToken", token.accessToken);
+  sessionStorage.setItem("myTwitterToken", token);
 };
 
 export const getTokenFromSessionStorage = () => {
