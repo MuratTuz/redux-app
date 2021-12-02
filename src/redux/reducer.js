@@ -1,11 +1,11 @@
 import { LOGGED_IN, POSTED_TWEET, FETCHED_TWEETS } from "./actionTypes";
 
 export const initialState = {
-  username: "Not Logged In",
-  token: "",
-  userId: "",
-  tweets: "",
-  lastTweet: "",
+  username: null,
+  token: null,
+  userId: null,
+  tweets: null,
+  lastTweet: null,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -36,5 +36,5 @@ export const reducer = (state = initialState, action) => {
       tweets,
     };
   }
-    return { ...state };
+  return state;
 };

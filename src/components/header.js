@@ -21,12 +21,17 @@ const Header = (state) => {
               <span>&nbsp; Twitter Application</span>
             </div>
           </Typography>
-          {state.username !== "Not Logged In" ? (
-            <TweetFormContainer />
+          {state.username !== null ? (
+            <>
+              <TweetFormContainer />
+              <Stack>{state.username}</Stack>
+            </>
           ) : (
-            <span></span>
+            <>
+              <span></span>
+              <Stack>Not Logged In</Stack>
+            </>
           )}
-          <Stack>{state.username}</Stack>
         </Toolbar>
       </AppBar>
     </Box>

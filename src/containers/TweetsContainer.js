@@ -1,11 +1,15 @@
 import { connect } from "react-redux";
 import Tweets from "../components/tweets";
-import { fetchedTweets } from "../redux/actions";
+import { getTweets } from "../redux/actions";
 
-const mapStateToProps = (state) => ({ state });
+const mapStateToProps = (state) => ({
+  tweets: state.tweets,
+  token: state.token,
+  lastTweet: state.lastTweet,
+});
 
 const mapDispatchToProps = {
-  fetchedTweets,
+  getTweets,
 };
 
 export const TweetsContainer = connect(
