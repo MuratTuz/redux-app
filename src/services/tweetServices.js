@@ -7,8 +7,7 @@ export const getAllTweetsService = async (token) => {
     },
   });
 
-  const data = await response.json();
-  return data;
+  return response;
 };
 
 export const postTweetService = async (token, userId, newTweet) => {

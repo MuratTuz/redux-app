@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 
 import { TweetFormContainer } from "../containers/TweetFormContainer";
 
-const logoImg = process.env.PUBLIC_URL + "/tweetLogo.png";
+const logoImg = "./tweetLogo.png";
 
 const Header = (state) => {
   return (

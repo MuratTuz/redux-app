@@ -1,5 +1,11 @@
 
-import { LOGGED_IN, POSTED_TWEET, FETCHED_TWEETS } from "./actionTypes";
+import {
+  LOGGED_IN,
+  POSTED_TWEET,
+  FETCHED_TWEETS,
+  FAILED_TWEETS,
+} from "./actionTypes";
+
 import { getAllTweetsService } from "../services/tweetServices";
 
 export const loggedIn = (token, userId, username) => ({
@@ -17,9 +23,19 @@ export const fetchedTweets = (tweets) => ({
   payload: tweets,
 });
 
+export const failedTweets = (error) => ({
+  type: FAILED_TWEETS,
+  payload: error,
+});
+
 export const getTweets = (token) => {
   return async (dispatch) => {
-    const data = await getAllTweetsService( token );
-    dispatch( fetchedTweets( data ) );
+    try {
+      const response = await getAllTweetsService(token);
+      const data = await response.json();
+      dispatch(fetchedTweets(data));
+    } catch (error) {
+      dispatch(failedTweets(error));
+    }
   };
 };

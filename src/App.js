@@ -3,8 +3,8 @@ import { RequireLoginContainer } from "./containers/RequireLoginContainer";
 import { TweetsContainer } from "./containers/TweetsContainer";
 import { HeaderContainer } from "./containers/HeaderContainer";
 
-import Footer from "./components/footer";
-import Login from "./components/login";
+import Footer from "./components/Footer";
+import Login from "./components/Login";
 
 import "./App.css";
 
@@ -23,7 +23,7 @@ const App = () => {
               </RequireLoginContainer>
             }
           />
-          <Route path="/" element={<Navigate replace to="/login" />} />
+          <Route path="/" element={<Navigate replace to="/tweets" />} />
         </Routes>
       </div>
       <Footer />

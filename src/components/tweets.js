@@ -1,19 +1,20 @@
 import { useEffect } from "react";
-//import { getAllTweetsService } from "../services/tweetServices";
-import Tweet from "../components/tweet";
+import { errorAlert } from "../services/alertServices";
+import Tweet from "./Tweet";
 
-const Tweets = ({ tweets, token, lastTweet, getTweets }) => {
+const Tweets = ({ tweets, token, error, lastTweet, getTweets }) => {
   useEffect(() => {
     getTweets(token);
+    if (error) {
+      errorAlert(error);
+    }
     // eslint-disable-next-line
-  }, [lastTweet]);
+  }, [lastTweet, error]);
 
   return (
     <div className="d-flex flex-column">
       {tweets &&
-        tweets
-          .reverse()
-          .map((tweet) => <Tweet tweet={tweet} key={tweet.id} />)}
+        tweets.reverse().map((tweet) => <Tweet tweet={tweet} key={tweet.id} />)}
     </div>
   );
 };
