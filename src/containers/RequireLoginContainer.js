@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import RequireLogin from "../auth/requireLogin";
+import RequireLogin from "../auth/RequireLogin";
 
 const mapStateToProps = (state) => ({ token: state.token });
 

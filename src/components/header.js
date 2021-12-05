@@ -6,7 +6,9 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 
-import { TweetFormContainer } from "../containers/TweetFormContainer";
+import { connect } from "react-redux";
+
+import TweetForm from "./TweetForm";
 
 const logoImg = "./tweetLogo.png";
 
@@ -23,7 +25,7 @@ const Header = (state) => {
           </Typography>
           {state.username !== null ? (
             <>
-              <TweetFormContainer />
+              <TweetForm />
               <Stack>{state.username}</Stack>
             </>
           ) : (
@@ -38,4 +40,6 @@ const Header = (state) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({ username: state.username });
+
+export default connect(mapStateToProps)(Header);
