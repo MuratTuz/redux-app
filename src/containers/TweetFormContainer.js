@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import TweetForm from "../components/tweetForm";
+import TweetForm from "../components/TweetForm";
 import { postedTweet } from "../redux/actions";
 
 const mapStateToProps = (state) => ({

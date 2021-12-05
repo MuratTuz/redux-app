@@ -1,27 +1,20 @@
 import { useEffect } from "react";
-import { getAllTweetsService } from "../services/tweetServices";
-import Tweet from "../components/tweet";
+import { errorAlert } from "../services/alertServices";
+import Tweet from "./Tweet";
 
-const Tweets = ({ state, fetchedTweets }) => {
+const Tweets = ({ tweets, token, error, lastTweet, getTweets }) => {
   useEffect(() => {
-    const getTweets = async () => {
-      const data = await getAllTweetsService(state.token);
-      const stateTweetCount = state.tweets ? state.tweets.length : 0;
-      if (data.length !== stateTweetCount) {
-        fetchedTweets(data);
-      }
-    };
-    getTweets();
+    getTweets(token);
+    if (error) {
+      errorAlert(error);
+    }
     // eslint-disable-next-line
-  }, [state]);
+  }, [lastTweet, error]);
 
-  const data = state.tweets;
   return (
     <div className="d-flex flex-column">
-      {data &&
-        [...data]
-          .reverse()
-          .map((tweet) => <Tweet tweet={tweet} key={tweet.id} />)}
+      {tweets &&
+        tweets.reverse().map((tweet) => <Tweet tweet={tweet} key={tweet.id} />)}
     </div>
   );
 };

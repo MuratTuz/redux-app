@@ -33,7 +33,7 @@ const TweetForm = ({ postedTweet, userId, token }) => {
   };
 
   return (
-    <div>
+    <form>
       <Stack direction="row" spacing={5}>
         <Button
           variant="contained"
@@ -72,10 +72,12 @@ const TweetForm = ({ postedTweet, userId, token }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={postTweet}>Post</Button>
+          <Button type="submit" onClick={postTweet}>
+            Post
+          </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </form>
   );
 };
 
