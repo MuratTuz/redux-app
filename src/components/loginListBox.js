@@ -3,9 +3,11 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
 import getAccessToken from "../services/getAccessToken";
-import { saveTokenToSessionStorage } from "../services/saveToken";
-
+import { saveTokenToSessionStorage } from "../services/tokenServices";
 import getLoginUsernames from "../services/getLoginUsernames";
+
+import { connect } from "react-redux";
+import { loggedIn } from "../redux/actions";
 
 const options = getLoginUsernames();
 
@@ -17,8 +19,8 @@ const LoginListBox = ({ loggedIn }) => {
       accessToken: token,
       user: { id: userId },
     } = await getAccessToken(username);
-    loggedIn(token, userId, username);
-    saveTokenToSessionStorage(token);
+    loggedIn(token, username, userId);
+    saveTokenToSessionStorage(token, username, userId);
     navigate("/tweets");
   };
 
@@ -38,4 +40,8 @@ const LoginListBox = ({ loggedIn }) => {
   );
 };
 
-export default LoginListBox;
+const mapDispatchToProps = {
+  loggedIn,
+};
+
+export default connect(null, mapDispatchToProps)(LoginListBox);

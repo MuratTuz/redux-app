@@ -8,9 +8,9 @@ import {
 
 import { getAllTweetsService } from "../services/tweetServices";
 
-export const loggedIn = (token, userId, username) => ({
+export const loggedIn = (token, username, userId) => ({
   type: LOGGED_IN,
-  payload: { token, userId, username },
+  payload: { token, username, userId },
 });
 
 export const postedTweet = (postedTweet) => ({

@@ -1,9 +1,14 @@
 import { useEffect } from "react";
 import { errorAlert } from "../services/alertServices";
+import { getTokenFromSessionStorage } from "../services/tokenServices";
 import Tweet from "./Tweet";
 
-const Tweets = ({ tweets, token, error, lastTweet, getTweets }) => {
+import { connect } from "react-redux";
+import { getTweets } from "../redux/actions";
+
+const Tweets = ({ tweets, error, lastTweet, getTweets }) => {
   useEffect(() => {
+    const { token } = getTokenFromSessionStorage();
     getTweets(token);
     if (error) {
       errorAlert(error);
@@ -14,9 +19,23 @@ const Tweets = ({ tweets, token, error, lastTweet, getTweets }) => {
   return (
     <div className="d-flex flex-column">
       {tweets &&
-        tweets.reverse().map((tweet) => <Tweet tweet={tweet} key={tweet.id} />)}
+        [...tweets]
+          .reverse()
+          .map((tweet) => <Tweet tweet={tweet} key={tweet.id} />)}
     </div>
   );
 };
 
-export default Tweets;
+const mapStateToProps = (state) => ({
+  tweets: state.tweets,
+  lastTweet: state.lastTweet,
+  error: state.error,
+});
+
+const mapDispatchToProps = {
+  getTweets,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tweets);
+
+

@@ -10,6 +10,9 @@ import Stack from "@mui/material/Stack";
 
 import { postTweetService } from "../services/tweetServices";
 
+import { connect } from "react-redux";
+import { postedTweet } from "../redux/actions";
+
 const TweetForm = ({ postedTweet, userId, token }) => {
   const [open, setOpen] = useState(false);
   const [tweetText, setTweetText] = useState("");
@@ -81,4 +84,13 @@ const TweetForm = ({ postedTweet, userId, token }) => {
   );
 };
 
-export default TweetForm;
+const mapStateToProps = (state) => ({
+  userId: state.userId,
+  token: state.token,
+});
+
+const mapDispatchToProps = {
+  postedTweet,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TweetForm);

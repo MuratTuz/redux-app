@@ -5,6 +5,8 @@ import {
   FAILED_TWEETS,
 } from "./actionTypes";
 
+import produce from "immer";
+
 export const initialState = {
   username: null,
   token: null,
@@ -14,39 +16,31 @@ export const initialState = {
   error: null,
 };
 
-export const reducer = (state = initialState, action) => {
+export const reducer = produce((state = initialState, action) => {
   switch (action.type) {
     case LOGGED_IN:
-      const { token, userId, username } = action.payload;
-      return {
-        ...state,
-        token,
-        userId,
-        username,
-      };
+      const { token, username, userId } = action.payload;
+      state.token = token;
+      state.userId = userId;
+      state.username = username;
+      break;
 
     case POSTED_TWEET:
       const lastTweet = action.payload;
-      return {
-        ...state,
-        lastTweet,
-      };
+      state.lastTweet = lastTweet;
+      break;
 
     case FAILED_TWEETS:
       const error = action.payload;
-      return {
-        ...state,
-        error,
-      };
+      state.error = error;
+      break;
 
     case FETCHED_TWEETS:
       const tweets = action.payload;
-      return {
-        ...state,
-        tweets,
-      };
+      state.tweets = tweets;
+      break;
 
     default:
       return state;
   }
-};
+}, initialState);
